@@ -351,3 +351,18 @@ See the [`LICENSE`][4] file for full details.
 [2]: https://github.com/enterprisedb/mongo_fdw/issues/new
 [3]: CONTRIBUTING.md
 [4]: LICENSE
+
+
+# Install postgres
+```
+sudo apt-get install postgresql-12 postgresql-server-dev-12
+sudo pg_ctlcluster 12 main start
+sudo /etc/init.d/postgresql reload
+sudo service postgresql restart
+```
+
+# Connect to postgres
+```
+sudo su - postgres
+psql
+```
