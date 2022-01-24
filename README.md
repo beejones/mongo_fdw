@@ -34,6 +34,7 @@ Note: Make sure you have permission to "/usr/local"
 2. Compile the code using make.
 
     ```
+    $ sudo ./autogen.sh --with-master
     $ make USE_PGXS=1
     ```
 
@@ -220,7 +221,7 @@ CREATE SERVER mongo_server
 -- create user mapping
 CREATE USER MAPPING FOR postgres
 	SERVER mongo_server
-	OPTIONS (username 'mongo_user', password 'mongo_pass');
+	OPTIONS (username 'edb', password 'edb');
 
 -- create foreign table
 CREATE FOREIGN TABLE warehouse
@@ -232,6 +233,8 @@ CREATE FOREIGN TABLE warehouse
 	)
 	SERVER mongo_server
 	OPTIONS (database 'db', collection 'warehouse');
+
+  \detr
 
 -- Note: first column of the table must be "_id" of type "name".
 
@@ -245,7 +248,7 @@ SELECT * FROM warehouse WHERE warehouse_id = 1;
 db.warehouse.find
 (
 	{
-		"warehouse_id" : 1
+		"warehouse_id" : 2
 	}
 ).pretty()
 {
@@ -365,4 +368,13 @@ sudo service postgresql restart
 ```
 sudo su - postgres
 psql
+```
+
+# Install mongodb
+```
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install mongodb
+sudo service mongodb restart
+mongo
 ```
